@@ -1,0 +1,3 @@
+flask
+utile==1.0
+spacy
