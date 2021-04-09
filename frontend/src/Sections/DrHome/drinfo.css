@@ -1,0 +1,16 @@
+.outer{
+    
+    padding-top: 20rem;
+    background-color: #1F2833;
+    padding-bottom: 12%;
+    padding-right: 0rem;
+    padding-left: 5rem;
+    
+    overflow-y: hidden;
+    
+
+}
+
+header{
+    color: white;
+}
