@@ -7,6 +7,8 @@ import Patienthome from './Sections/Patienthome/Patienthome';
 import Verify from './Sections/Verification/verify';
 import Otp from './Sections/Otp/Otp';
 import NewPres from "./Sections/Prescription/NewPres";
+import Myinfo from './Sections/DrHome/myinfo';
+
 
 function App() {
   return (<div className='App'>
@@ -18,6 +20,8 @@ function App() {
         <Route exact path="/patienthome/:id" render={(props) => <Patienthome {...props} />} />
         <Route  exact path="/otp/:idone/:idtwo" component={Otp} />
         <Route  path="/verify/prescription/:idone/:idtwo" render={(props)=><NewPres {...props}/>} />
+        <Route exact path="/myinfo/:id" render={(props)=><Myinfo {...props}/>} />
+
       </Switch>
     </Router>
 

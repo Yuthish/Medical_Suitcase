@@ -10,7 +10,7 @@ app.use(cors());
 
 const dbURI = 'mongodb+srv://jonode:jonode2001@cluster0.e29hp.mongodb.net/med-sui'
 mongoose.connect(dbURI, { useNewUrlParser:true, useUnifiedTopology:true })
- .then((result)=> app.listen(3000,function(){console.log('Server has started.')}))
+ .then((result)=> app.listen(5000,function(){console.log('Server has started.')}))
  .catch((err)=> console.log(err))
 
  
