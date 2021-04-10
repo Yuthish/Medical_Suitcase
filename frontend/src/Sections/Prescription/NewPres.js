@@ -2,11 +2,230 @@ import React, { useState, useEffect } from 'react'
 import './Prescription.css';
 import * as ImIcons from "react-icons/im";
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 
 function NewPres(props) {
     
+
+    const [report, setReport] = useState([])
+    const [selection, setSelection] = useState([])
     const [toggle, setToggle] = useState(true)
+    const idone = props.match.params.idone;
+    const idtwo=props.match.params.idtwo;
+    const [medicines, setMedicines] = useState([])
+    var arr;
+
+    const [name, setName] = useState('')
+    const [id, setId] = useState('')
+    const [bloodgroup, setBloodgroup] = useState('')
+    const [dob, setDob] = useState('');
+    const [piclink, setPiclink] = useState('')
+    const [age, setAge] = useState(0)
+    const [docName, setDocName] = useState('')
+    const [docPlace, setDocPlace] = useState('')
+    const [gender, setGender]=useState('')
+    var patientinfo = []
+    var docinfo=[]
+
+
+    const get_age = (date) => {
+        var dob = new Date(date);
+        var month_diff = Date.now() - dob.getTime();
+        var age_dt = new Date(month_diff);
+        var year = age_dt.getUTCFullYear();
+        var age = Math.abs(year - 1970);
+        return age + 1
+      }
+
+
+      useEffect(() => {
+        axios.get("/getuser",{
+          params:{
+            id:idone
+          }
+        })
+        .then(res=>{
+          console.log("doc",res.data)
+          docinfo.push(res.data)
+          setDocName(docinfo[0].details.name)
+          setDocPlace(docinfo[0].details.doc.workplace_list[0])
+          console.log(docName,docPlace)
+        })
+        
+        axios.get('/getuser', {
+          params: {
+            id: idtwo
+          }
+        })
+          .then(res => {
+            console.log(res.data)
+            patientinfo.push(res.data)
+            setName(patientinfo[0].details.name)
+            setId(patientinfo[0].ID)
+            setDob(patientinfo[0].details.dob)
+            console.log(dob)
+            setBloodgroup(patientinfo[0].details.blood_group)
+            setPiclink(patientinfo[0].details.profile_pic)
+            setGender(patientinfo[0].details.gender)
+            let k=get_age(dob);
+            console.log(k)
+            setAge(k)
+            
+    
+    
+    
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    
+    
+    
+      },[])
+
+      const handleClickOne = (e) => {
+        // setTimeoftheday(prevObj=>[...prevObj,{selection}])
+        // console.log(timeoftheday)
+        let a = []
+        a.push(selection)
+        console.log(e.target["Timing"])
+        setMedicines(prevmedicines => [...prevmedicines, { id: prevmedicines.length + 1, drugname: e.target['drugs'].value, time: selection, meal: e.target['Time'].value, noofdays: e.target['Days'].value }])
+        console.log(medicines)
+    
+        e.preventDefault();
+    
+        console.log(e.target)
+    
+    
+      }
+
+      const handleClickTwo = (e) => {
+
+        // console.log(e.target)
+        // var str=[]
+        // str.push(e.target.value)
+        // console.log(str)
+        // setReport(str)
+        // console.log(report)
+        setToggle(false)
+        e.preventDefault();
+    
+    
+    
+    
+      }
+
+      const handleReport = (e) => {
+        setReport(e.target.value)
+    
+      }
+
+      const handleSelection = (e) => {
+
+        var x = e.target.value;
+        arr = selection
+        console.log(x)
+        if (arr.includes(x)) {
+          let index = arr.indexOf(x)
+          arr.splice(index, 1)
+    
+    
+          setSelection(arr)
+        }
+        else {
+          arr.push(x)
+          setSelection(arr)
+        }
+    
+    
+        console.log(selection, arr)
+    
+    
+    
+      }
+
+      const handleDelete = (x) => {
+        console.log(x)
+        medicines.forEach(med => {
+          if (med.id == x) {
+            let i = medicines.indexOf(med)
+            medicines.splice(i, 1)
+            setMedicines(medicines)
+    
+          }
+        })
+    
+      }
+
+      const handlePrescription = () => {
+        console.log(medicines)
+          axios.get("/storemedicalrecords",{
+            params:{
+              medicines:medicines,
+              report:report,
+              id:id,
+              idone:idone,
+              name:name,
+              docName:docName,
+              docPlace:docPlace
+            }
+          })
+            
+                window.location="/patientrecords/printrecord/"+idone+"/"+id
+        }
+
+
+        const medList = medicines.map(med => {
+            return (
+        
+        
+        
+        
+            // const handlePrescription=()=>{
+            //   console.log(medicines)
+            //   axios.get("/storemedicalrecords",{
+            //     params:{
+            //       medicines:medicines,
+            //       report:report,
+            //       id:id,
+            //       name:name
+            //     }
+            //   })
+                
+            //         window.location="/patientrecords/printrecord/"+id
+                
+                  
+                
+            // }
+              <tr key={med.id.toString()}>
+        
+                <td>{med.drugname}</td>
+        
+                <td>{med.time.map(x => {
+                  return (
+                    <li >{x}</li>
+                  )
+                })}</td>
+                <td>{med.meal}</td>
+                <td>{med.noofdays}</td>
+                <td>
+                  <Link to="#" className="bin">
+                    <ImIcons.ImBin onClick={() => { handleDelete(med.id) }}></ImIcons.ImBin>
+                  </Link>
+                </td>
+        
+        
+              </tr>
+        
+        
+        
+        
+            )
+            //  console.log("Printed",med.id,med.meal,med.noofdays)
+              })
+
+
 
 
     return (
@@ -15,7 +234,7 @@ function NewPres(props) {
             <h1 className="heading" style={{ color: 'white', textAlign: 'center', position: 'relative', bottom: '80px' }}>Create Prescription</h1>
             <div class="ui horizontal  segments">
                 <div class="ui black inverted segment" >
-                    <img style={{ position: 'absolute', bottom: '20px', right: '110px' }} src=''></img>
+                    <img style={{ position: 'absolute', bottom: '20px', right: '110px' }} src={piclink}></img>
                 </div>
 
                 <div class="ui black inverted segment" style={{ width: '40%', alignContent: 'center', fontSize: '50px' }}>
@@ -26,22 +245,22 @@ function NewPres(props) {
                         <tbody>
                             <tr>
                                 <td><strong><h3>Patient Name</h3></strong></td>
-                                <td style={{ fontSize: '17px' }}>Levy Roseman</td>
+                                <td style={{ fontSize: '17px' }}>{name.toUpperCase()}</td>
                                 <td><strong>Patient ID</strong></td>
-                                <td style={{ fontSize: '17px' }}>32</td>
+                                <td style={{ fontSize: '17px' }}>{id}</td>
 
                             </tr>
                             <tr>
                                 <td><strong>DOB</strong></td>
-                                <td style={{ fontSize: '17px' }}>09/04/2002</td>
+                                <td style={{ fontSize: '17px' }}>{dob}</td>
                                 <td><strong>Blood Group</strong></td>
-                                <td style={{ fontSize: '17px' }}>H+ve</td>
+                                <td style={{ fontSize: '17px' }}>{bloodgroup}</td>
                             </tr>
                             <tr>
                                 <td><strong>Gender</strong></td>
-                                <td style={{ fontSize: '17px' }}>Male</td>
+                                <td style={{ fontSize: '17px' }}>{gender}</td>
                                 <td><strong>Age</strong></td>
-                                <td style={{ fontSize: '17px' }}>32</td>
+                                <td style={{ fontSize: '17px' }}>14</td>
                             </tr>
                         </tbody>
 
@@ -71,6 +290,7 @@ function NewPres(props) {
                         </tr>
                     </thead>
                     <tbody>
+                        {medList}
                         
 
                     </tbody>
@@ -94,15 +314,15 @@ function NewPres(props) {
                             <form >
                                 <label><h3>Report</h3></label>
 
-                                <textarea className='drug-drop' style={{ marginTop: '7px' }} rows='5' placeholder="Type here- Patients Symtoms, diagonistic details.etc" name="Report" ></textarea>
+                                <textarea onChange={handleReport} className='drug-drop' style={{ marginTop: '7px' }} rows='5' placeholder="Type here- Patients Symtoms, diagonistic details.etc" name="Report" ></textarea>
                                 <br></br>
                                 <br></br>
-                                <button  className="ui inverted primary button">Submit</button>
+                                <button onClick={handleClickTwo}  className="ui inverted primary button">Submit</button>
 
                             </form>
                             :
 
-                            <div></div>
+                            <div>{report}</div>
 
 
                         }
@@ -122,7 +342,7 @@ function NewPres(props) {
 
 
                         <h1>Medicines</h1>
-                        <form >
+                        <form onSubmit={handleClickOne} >
 
                             <label><h3>Drug</h3></label>
                             <select className='drug-drop' name="drugs" id="drugs" required>
@@ -136,16 +356,16 @@ function NewPres(props) {
                             <br></br>
 
                             <div className="ui checkbox">
-                                <input type="checkbox" id="Morning" name="Morning" value="Morning" ></input>
+                                <input type="checkbox" id="Morning" name="Morning" value="Morning" onChange={handleSelection}></input>
                                 <label style={{ paddingRight: '20px' }} className='' htmlFor="Morning">Morning</label>
                             </div>
 
                             <div className="ui checkbox">
-                                <input type="checkbox" id="Afternoon" name="Afternoon" value="Afternoon"  ></input>
+                                <input type="checkbox" id="Afternoon" name="Afternoon" value="Afternoon" onChange={handleSelection}  ></input>
                                 <label style={{ paddingRight: '20px' }} className='' htmlFor="Afternoon">Afternoon</label>
                             </div>
                             <div className="ui checkbox">
-                                <input type="checkbox" id="Night" name="Night" value="Night"  ></input>
+                                <input type="checkbox" id="Night" name="Night" value="Night" onChange={handleSelection} ></input>
                                 <label style={{ paddingRight: '20px' }} className='' htmlFor="Night"> Night </label>
                             </div>
 
@@ -183,7 +403,7 @@ function NewPres(props) {
 
             {toggle ? null :
                 <div className="view" >
-                    <button class="ui primary button" style={{ marginLeft: '10px', position: 'relative', bottom: '230px' }} >View Prescription</button>
+                    <button class="ui primary button" style={{ marginLeft: '10px', position: 'relative', bottom: '230px' }} onClick={handlePrescription}>View Prescription</button>
                 </div>
             }
 
