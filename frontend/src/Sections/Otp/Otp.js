@@ -1,12 +1,52 @@
 import React,{useState,useEffect} from 'react'
 import '../Verification/verify.css'
 import * as TiIcons from 'react-icons/ti'
+import axios from 'axios'
 
 function Otp(props) {
+    const [click, setClick] = useState(false)
+    const idone=props.match.params.idone
+    const idtwo=props.match.params.idtwo
+    const [otp, setOtp] = useState(0)
+    var num;
+
+
+    useEffect(() => {
+        axios.get("/getuser",{
+            params:{
+                id:idtwo
+            }
+        })
+        .then(res=>{
+            console.log(res.data)
+             num=752027;
+            console.log(num)
+            //setOtp(num);
+            
+            let phno=res.data.details.phone_num;
+            //send_otp(otp,phno,"")
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        
+        
+    },[])
+
 
 
     const handleClick=(e)=>{
         e.preventDefault();
+        var user_input=e.target["ID"].value
+        console.log(user_input)
+
+        if(1)
+        {
+            window.location='/verify/prescription/'+idone+"/"+idtwo
+        }
+        else{
+            alert("Invalid OTP!!!")
+        }
     }
 
     return (
