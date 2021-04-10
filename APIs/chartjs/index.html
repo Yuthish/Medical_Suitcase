@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <title>Document</title>
+    <style>
+        .segment{
+            border-color: white !important;
+            
+        
+        }
+        body{
+            background-color: black;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            padding-top: 2%;
+            padding-bottom: 1%;
+        }
+        .segments{
+            background-color: black;
+        }
+
+        .graph1 {
+            padding-top: 7%;
+            padding-left: 9%;
+            padding-bottom: 5%;
+           
+        }
+
+
+        .graph2 {
+            padding-top: 7%;
+            padding-left: 9%;
+            padding-bottom: 3%;
+
+        }
+
+        .graph3 {
+            padding-top: 3%;
+            padding-left: 10%;
+            padding-bottom: 5%;
+
+        }
+
+        .graph4 {
+            padding-top: 5%;
+            padding-left: 13%;
+            padding-bottom: 5%;
+
+        }
+
+        .graph5 {
+            padding-top: 5%;
+            padding-left: 13%;
+            padding-bottom: 5%;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>ANALYTICS</h1>
+
+
+
+
+
+    <div class="ui horizontal segments">
+        <div class="ui black inverted segment">
+            <h1>Line Chart</h1>
+            <div class="graph1">
+             <canvas id="Chart1" width="600" height="400"></canvas>
+            </div>
+        </div>
+        <div class="ui black inverted segment">
+            <h1>Radar Chart</h1>
+            <div class="graph2">
+
+                <canvas id="Chart2" width="600" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="ui horizontal segments">
+        <div class="ui  black inverted segment">
+            <h1>Bar Chart</h1>
+            <div class="graph3">
+
+                <canvas id="Chart3" width="1200" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="ui horizontal segments">
+        <div class="ui black inverted segment">
+            <h1>Doughnut</h1>
+            <div class="graph4">
+
+                <canvas id="Chart4" width="600" height="500"></canvas>
+            </div>
+
+        </div>
+        <div class="ui black inverted segment">
+            <h1>Pie Chart</h1>
+            <div class="graph5">
+
+                <canvas id="Chart5" width="600" height="500"></canvas>
+            </div>
+        </div>
+        <br>
+
+    </div>
+
+
+    <script src="./chart_maker.js"></script>
+</body>
+
+</html>
