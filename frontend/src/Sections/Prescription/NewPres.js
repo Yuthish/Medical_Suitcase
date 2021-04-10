@@ -23,7 +23,7 @@ function NewPres(props) {
     const [piclink, setPiclink] = useState('')
     const [age, setAge] = useState(0)
     const [docName, setDocName] = useState('')
-    const [docPlace, setDocPlace] = useState('')
+    const [docPlace, setDocPlace] = useState([])
     const [gender, setGender]=useState('')
     var patientinfo = []
     var docinfo=[]
@@ -49,7 +49,8 @@ function NewPres(props) {
           console.log("doc",res.data)
           docinfo.push(res.data)
           setDocName(docinfo[0].details.name)
-          setDocPlace(docinfo[0].details.doc.workplace_list[0])
+          console.log(docinfo[0].details.doc)
+          setDocPlace(docinfo[0].details.doc.workplace_list)
           console.log(docName,docPlace)
         })
         
@@ -82,7 +83,7 @@ function NewPres(props) {
     
     
     
-      },[])
+      })
 
       const handleClickOne = (e) => {
         // setTimeoftheday(prevObj=>[...prevObj,{selection}])
