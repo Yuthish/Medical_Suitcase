@@ -9,7 +9,8 @@ import Otp from './Sections/Otp/Otp';
 import NewPres from "./Sections/Prescription/NewPres";
 import Myinfo from './Sections/DrHome/myinfo';
 import Showpres from './Sections/Printprescription/showpres';
-
+import Printrecord from './Sections/Printrecord/Printrecord';
+import Patientrecords from './Sections/Patientrecords/Patientrecords';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Route  path="/verify/prescription/:idone/:idtwo" render={(props)=><NewPres {...props}/>} />
         <Route exact path="/myinfo/:id" render={(props)=><Myinfo {...props}/>} />
         <Route   exact path="/patientrecords/myprescription/:idone/:idtwo" render={(props)=><Showpres {...props}/>}/>
+        <Route   exact path="/patientrecords/printrecord/:idone/:idtwo" render={(props)=><Printrecord {...props}/>}/>
+        <Route  exact path="/patientrecords/:id" render={(props)=><Patientrecords {...props}/>} />
       </Switch>
     </Router>
 
