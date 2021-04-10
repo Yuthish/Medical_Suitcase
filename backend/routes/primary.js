@@ -6,8 +6,10 @@ var mongoose=require('mongoose')
 var User=require('../models/userModel')
 var medicalrecord=require('../models/medicalrecord')
 const dig_sig = require('../blockchain/digital_signature');
+// const create_signature = require('../blockchain/digital_signature');
 const hasher = require('../blockchain/chain_utility')
-var Block=require("../models/blockModel")
+var Block=require("../models/blockModel");
+
 
 const convert_age = (timestamp)=>{
     let date = new Date(timestamp)
@@ -269,6 +271,36 @@ router.get("/getblocksdata",function(req,res){
     })
 })
 
+router.get("/gettingrecord",function(req,res){
+    var id=req.query.id
+    medicalrecord.findOne({_id:id})
+    .then(med=>{
+        console.log(med)
+        res.json(med)
+    })
+})
+
+router.get("/passsig",function(req,res){
+    var pvtKey=req.query.pvtKey
+    var pubKey=req.query.pubKey
+    var pres=req.query.pres
+    console.log(pvtKey,pubKey,pres)
+    var sig= dig_sig.create_signature(pres,pvtKey)
+    res.end(sig)
+
+    
+})
+
+router.get("/check",function(req,res){
+    var input=req.query.input
+    var pres=req.query.pres
+    var sig=req.query.sig;
+    var buf = new Buffer.from(sig,'base64');
+    // console.log("typeof",typeof(buf),buf)
+    
+    var ans=dig_sig.verify_signature(buf,pres,input)
+    console.log(ans)
+})
 
 
 

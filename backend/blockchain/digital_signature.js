@@ -1,4 +1,5 @@
-const crypto = require("crypto")
+const crypto = require("crypto");
+const { base } = require("../models/medicalrecord");
 
 const generate_keys = () => {
     const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
@@ -45,12 +46,16 @@ const verify_signature = (signature, prescription_JSON, public_key) =>{
 const test_run = () => {
     const keys = generate_keys();
     console.log(keys);
-    message = "digital signature"; // prescription
-    const signature = create_signature({ message }, keys.privateKey); // signature...nobody understand
-    // verify_signature(signature, { message: message }, keys.publicKey);
-    console.log(signature);
+    var message = "digital signature";
+    var fake="ufew" // prescription
+    
+    const signature = create_signature({ message }, keys.privateKey);
+    var buff=new Buffer.from(signature.toString()) // signature...nobody understand
+    console.log(verify_signature(buff, { message: fake }, keys.publicKey));
+    console.log(buff);
+    
 }
-test_run()
+// test_run()
 
 
 module.exports ={

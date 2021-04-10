@@ -1,6 +1,33 @@
+import axios from 'axios';
 import React,{useEffect,useState} from 'react';
 
 function Transaction(){
+    const [list, setList] = useState([])
+    useEffect(()=>{
+        axios.get("/getblocksdata")
+        .then(res=>{
+            // console.log(res.data)
+            setList(res.data)
+           
+        })
+        
+    },[])
+    console.log(list[0])
+
+    
+    
+    var blocklist=list.map(x=>{
+        return(
+        <tr>
+        <td style={{ fontSize: '17px' }}>{x.hash.slice(0,40)}...</td>
+        <td style={{ fontSize: '17px' }}>{x.updatedAt}</td>
+        <td style={{ fontSize: '17px' }}>{x.transaction.slice(0,45)}...</td>
+        <td style={{ fontSize: '17px' }}>{x.size}</td>
+        </tr>
+        )
+
+    })
+
 
     return(<div className="prescription-form" style={{ paddingBottom: '22.2%' }}>
     <h1 className="heading" style={{ color: 'white', textAlign: 'center', position: 'relative', bottom: '80px' }}>Transactions</h1>
@@ -18,13 +45,7 @@ function Transaction(){
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-        <td style={{ fontSize: '17px' }}>sakohdhsd</td>
-        <td style={{ fontSize: '17px' }}>sakohdhsd</td>
-        <td style={{ fontSize: '17px' }}>sakohdhsd</td>
-        <td style={{ fontSize: '17px' }}>sakohdhsd</td>
-        </tr>
-                    
+                    {blocklist}
                     
                 </tbody>
             </table>
