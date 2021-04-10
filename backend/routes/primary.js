@@ -137,5 +137,24 @@ router.get("/storemedicalrecords",function(req,res){
 
 
 
+router.get('/getrecord',function(req,res){
+    var idone=req.query.idone;
+    var idtwo=req.query.idtwo;
+    console.log(idtwo)
+    User.findOne({ID:idone}).populate('mymedicalrecords')
+        .then(founduser=>{
+            console.log('founduser',founduser)
+            founduser.mymedicalrecords.forEach(x=>{
+                if(x._id.toString()==idtwo){
+                    res.json(x)
+                }
+                console.log("ID",typeof(x._id))
+            })
+        })
+})
+
+
+
+
 
 module.exports=router
