@@ -1,0 +1,40 @@
+.date-picker{
+    border-radius: 2px !important;
+}
+.title{
+    text-align: center !important;
+    color: white !important;
+}
+.patientrecords{
+    
+    width: 100% !important;
+    padding-bottom: 5% !important;
+}
+.from-date-picker{
+    margin-right: 20% !important;
+}
+.date-button{
+    position: absolute !important;
+    top:45px !important;
+    right:390px !important;
+}
+.patient-record1{
+    background-color: black;
+    padding-bottom: 3.7%;
+}
+.suitcasebg{
+    opacity: 0.11;
+    position: absolute;
+    top: 125px;
+    left:425px;
+}
+
+@media (max-width:1028px) {
+    .suitcasebg{
+    position: absolute;
+    top: 170px;
+    left:80px;
+
+    }
+    
+}
