@@ -1,8 +1,85 @@
 import React, { useState } from 'react';
 import '../Patientrecords/Patientrecords.css';
-// import '../../components/Records/Records.css';
+
+import axios from 'axios'
 
 function Patientrecords(props) {
+    var id = props.match.params.id
+    const [toggle, setToggle] = useState(false)
+    console.log(id)
+    const [data, setData] = useState([])
+
+
+    const handleSubmit = (e) => {
+
+        var from = e.target['from'].value
+        var to = e.target['to'].value
+
+        console.log('2021-09-15' < '2019-09-15')
+        axios.get("/fetchdata", {
+            params: {
+                from: from,
+                to: to,
+                id: id
+            }
+        })
+            .then(res => {
+                // console.log(res.data)
+                setData(res.data)
+                console.log(data)
+
+            })
+
+        e.preventDefault();
+
+
+
+
+
+
+
+    }
+
+    const list = data.map(x => {
+        return (
+            <div class="patientrecords ui inverted segment">
+                <div className="ui inverted form">
+                    <div className="one field">
+                        <h1>Dr.{x.doc.name}</h1>
+                        <h3>{x.doc.place} | {x.date}</h3>
+                        <br></br>
+                        <div>
+                            <h2>Details</h2>
+                            <p>{x.report}</p>
+                            <button type='button' onClick={(e) => {
+                                e.preventDefault();
+                                window.location = "/patientrecords/myprescription/" + id + "/" + x._id;
+                            }} className='report-button ui inverted primary button'>See Report</button>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        )
+    })
+
+
+
+
+
+
+
+
+
 
 
     return (<div>
@@ -13,12 +90,12 @@ function Patientrecords(props) {
             <br></br>
 
 
-
+            {console.log(data)}
             <div class="patientrecords ui black inverted segment">
                 <h2>Records</h2>
                 <br></br>
                 <div className="ui black inverted form">
-                    <form  >
+                    <form onSubmit={handleSubmit} >
                         <div className="three fields">
                             <div className="field">
 
@@ -62,7 +139,7 @@ function Patientrecords(props) {
             </div>
 
 
-
+            {list}
 
 
 

@@ -1,5 +1,10 @@
 var mongoose = require("mongoose");
 
+var Record=require('./medicalrecord')
+var Block=require("../models/blockModel")
+const dig_sig = require('../blockchain/digital_signature');
+const hasher = require('../blockchain/chain_utility')
+
 var userSchema = mongoose.Schema({
     email_addr: String,
     password: String,

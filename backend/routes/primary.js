@@ -5,6 +5,9 @@ var bodyParser=require('body-parser')
 var mongoose=require('mongoose')
 var User=require('../models/userModel')
 var medicalrecord=require('../models/medicalrecord')
+const dig_sig = require('../blockchain/digital_signature');
+const hasher = require('../blockchain/chain_utility')
+var Block=require("../models/blockModel")
 
 router.get("/",function(req,res){
     res.send("Hello")
@@ -97,6 +100,7 @@ router.get("/storemedicalrecords",function(req,res){
             User.findOne({ID:patientID})
             .then(founduser=>{
                 console.log("FOUNDUSER",founduser)
+                console.log(founduser.details.doc.workplace_list)
                 founduser.mymedicalrecords.push(med)
                 founduser.save()
 
@@ -134,6 +138,52 @@ router.get("/storemedicalrecords",function(req,res){
     
 })
 
+router.get('/fetchdata',function(req,res) {
+    var id=req.query.id;
+    console.log(id)
+    var from =req.query.from;
+    var to=req.query.to;
+    var data=[]
+    var num=0
+    
+   
+        
+     User.findOne({ID:id}).populate('mymedicalrecords')
+        .then(user=>{
+            console.log(user)
+            user.mymedicalrecords.forEach(x=>{
+                if(x.date<=to && x.date>=from){
+                    console.log("medical record",x)
+
+                    data.push(x)
+                    num=num+1
+                }
+            })
+            res.json(data)
+            
+        })
+        .then((res)=>{
+            console.log("data"  ,data)
+            var newone=data;
+            // console.log("done1")
+            //  res.render(newone)
+            //  console.log("done2")
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        // .then(()=>{
+        //     console.log(data)
+        //     return data;
+        // })
+    
+    // find().then((data)=>{
+    //     console.log(data)
+    // })
+    
+    
+})
+
 
 
 
@@ -152,6 +202,49 @@ router.get('/getrecord',function(req,res){
             })
         })
 })
+
+router.get("/createblock",function(req,res){
+    var presJSON=req.query.pres
+    console.log(presJSON)
+    let block={}
+    let pvtkey=dig_sig.generate_keys().privateKey
+    block.transaction=dig_sig.create_signature(presJSON, pvtkey).toString('base64')
+    Block.findOne({}, {}, { sort: { 'created_at' : -1 } })
+    .then(prevBlock=>{
+        console.log(prevBlock)
+        block.prev_hash=prevBlock.hash
+        block['hash'] = hasher.hash_block(JSON.stringify(block));
+        block['size'] = JSON.stringify(block).length+4;
+         Block.create(block)
+         .then(thisBlock=>{
+             console.log(thisBlock)
+         })
+         .catch(err=>{
+             console.log(err)
+         })
+
+
+    })
+    .catch(err=>{
+        console.log(err)
+    });
+
+
+})
+
+router.get("/getblocksdata",function(req,res){
+    let blocksdata=[]
+    Block.find({})
+    .then(allblocks=>{
+        
+        res.json(allblocks.reverse())
+
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+
 
 
 
