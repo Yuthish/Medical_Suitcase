@@ -11,7 +11,8 @@ import Myinfo from './Sections/DrHome/myinfo';
 import Showpres from './Sections/Printprescription/showpres';
 import Printrecord from './Sections/Printrecord/Printrecord';
 import Patientrecords from './Sections/Patientrecords/Patientrecords';
-
+import Transactions from './Sections/Blockchain/Transactions';
+import Homepage from './Sections/Homepage/Homepage';
 
 function App() {
   return (<div className='App'>
@@ -27,6 +28,9 @@ function App() {
         <Route   exact path="/patientrecords/myprescription/:idone/:idtwo" render={(props)=><Showpres {...props}/>}/>
         <Route   exact path="/patientrecords/printrecord/:idone/:idtwo" render={(props)=><Printrecord {...props}/>}/>
         <Route  exact path="/patientrecords/:id" render={(props)=><Patientrecords {...props}/>} />
+        <Route  exact path="/transactions" component={Transactions} />
+        <Route exact path="/" component={Homepage} />
+        
       </Switch>
     </Router>
 
