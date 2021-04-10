@@ -5,7 +5,17 @@ import axios from 'axios'
 import medwm from '../Printprescription/med_sui.png';
 import {Link} from 'react-router-dom'
 
+
+const get_age = (date) => {
+  var dob = new Date(date);
+  var month_diff = Date.now() - dob.getTime();
+  var age_dt = new Date(month_diff);
+  var year = age_dt.getUTCFullYear();
+  var age = Math.abs(year - 1970);
+  return age + 1
+}
 class ComponentToPrint extends Component {
+ 
 
     constructor(props){
         super(props)
@@ -20,6 +30,7 @@ class ComponentToPrint extends Component {
           date:"",
           report:"",
           medicines:[],
+          age:0
           
     
     
@@ -45,6 +56,7 @@ class ComponentToPrint extends Component {
          this.setState({patientID:info[0].ID})
          this.setState({patientDOB:info[0].details.dob})
          this.setState({patientName:info[0].details.name})
+         
          // this.setState({doctorName:info[0].mymedicalrecords[length-1].doc.name})
          // this.setState({doctorID:info[0].mymedicalrecords[length-1].doc.ID})
          // this.setState({doctorOrg:info[0].mymedicalrecords[length-1].doc.place})
@@ -53,6 +65,7 @@ class ComponentToPrint extends Component {
          // console.log(info[0].mymedicalrecords[length-1].medicine_list)
          // this.setState({medicines:[info[0].mymedicalrecords[length-1].medicine_list]})
          // console.log(this.state.medicines)
+         this.setState({age:get_age(this.state.patientDOB)})
    
      
         
@@ -164,7 +177,7 @@ class ComponentToPrint extends Component {
                                     <td><h4>Gender</h4></td>
                                     <td>Male</td>
                                     <td><h4>Age</h4></td>
-                                    <td>30</td>
+                                    <td>{this.state.age}</td>
                                 </tr>
                             </tbody>
                         </table>
