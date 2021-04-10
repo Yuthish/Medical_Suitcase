@@ -9,6 +9,29 @@ const dig_sig = require('../blockchain/digital_signature');
 const hasher = require('../blockchain/chain_utility')
 var Block=require("../models/blockModel")
 
+const convert_age = (timestamp)=>{
+    let date = new Date(timestamp)
+    var timestamp = date.getTime();
+    if (date.getDate() > 9){
+        if(date.getMonth()<10){
+        var formatted_date = date.getFullYear() + "-" + "0"+(parseInt(date.getMonth())+1).toString() + "-" + date.getDate()
+        }
+        else{
+            var formatted_date = date.getFullYear() + "-" + (parseInt(date.getMonth())+1).toString() + "-" + date.getDate()
+
+        }
+    } else {
+        if(date.getMonth()<10){
+            var formatted_date = date.getFullYear() + "-" + "0"+(parseInt(date.getMonth())+1).toString() + "-" + date.getDate()
+            }
+        else{
+                var formatted_date = date.getFullYear() + "-" + (parseInt(date.getMonth())+1).toString() + "-" + date.getDate()
+    
+            }
+    }
+    return formatted_date;
+}
+
 router.get("/",function(req,res){
     res.send("Hello")
 })
@@ -83,13 +106,14 @@ router.get("/storemedicalrecords",function(req,res){
         medlist.push(JSON.parse(med))
 
     })
+
     medicalrecord.create({
             doc: {
                 name: doctorName,
                 place: doctorPlace,
                 ID: doctorID
             },
-            date: Date.now() + '',
+            date: convert_age(Date.now()),
             report: record,
             keywords: ["Headache", "body", "aches", "Fever", "dengue"],
             medicine_list: medlist,

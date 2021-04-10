@@ -5,6 +5,8 @@ import prescription from '../Homepage/Prescription.png';
 import printpres from '../Homepage/Printpres.png';
 import Analytics from '../Homepage/Analytics.png';
 import Transactions from '../Homepage/Transactions.png';
+
+
 function Homepage() {
 
     return (
@@ -29,8 +31,8 @@ function Homepage() {
                 <div class="home-content ui two column doubling stackable grid container">
                     <div class="column">
 
-                    <h1 className='heading' style={{color:'white',paddingTop:'55%',fontFamily:'megrim,cursive'}}>Medical Suitcase</h1>
-                    <h3 style={{fontFamily:'megrim,cursive'}}>The future of Healthcare Service</h3>
+                    <h1 className='heading' style={{color:'white',paddingTop:'55%',fontFamily:'megrim,cursive',fontSize:'70px'}}>Medical Suitcase</h1>
+                    <h3 style={{fontFamily:'megrim,cursive',fontSize:'25px'}}>The future of Healthcare Service</h3>
                         
                     </div>
                     <div class="column">
@@ -48,7 +50,7 @@ function Homepage() {
 
             <div class="column" >
             
-            <h1 className='heading' style={{color:'white',paddingTop:'10%',fontFamily:'megrim,cursive',textAlign:'center',fontSize:'50px'}}>About</h1>
+            <h1 className='heading' style={{color:'white',paddingTop:'10%',fontFamily:'megrim,cursive',textAlign:'center',fontSize:'80px'}}>About</h1>
             <br></br>
             <br></br>
             <h3 style={{fontSize:'30px',fontFamily:'megrim,cursive',textAlign:'center'}}>Medical Suitcase is a service platform where all the Medical Records of the citizens are stored in a secured environment.</h3>
@@ -71,7 +73,7 @@ function Homepage() {
 
             <div class="column" >
             
-            <h1 className='heading' style={{color:'white',paddingTop:'10%',fontFamily:'megrim,cursive',textAlign:'center',fontSize:'50px'}}>Features</h1>
+            <h1 className='heading' style={{color:'white',paddingTop:'10%',fontFamily:'megrim,cursive',textAlign:'center',fontSize:'80px'}}>Features</h1>
             <br></br>
             <br></br>
             
