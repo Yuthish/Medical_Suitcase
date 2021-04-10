@@ -3,6 +3,7 @@ import { useReactToPrint } from 'react-to-print';
 import { render } from 'react-dom';
 import axios from 'axios'
 import medwm from '../Printprescription/med_sui.png';
+import {Link} from 'react-router-dom'
 
 class ComponentToPrint extends Component {
 
@@ -109,6 +110,7 @@ class ComponentToPrint extends Component {
                <td>{med.meal}</td>
                <td>{med.noofdays}</td>
                
+               
        
        
              </tr>
@@ -145,8 +147,8 @@ class ComponentToPrint extends Component {
                                     <td><h4>Doctor ID </h4></td>
                                     <td>{this.state.doctorID}</td>
                                     <td><h4>Doctor Name</h4></td>
-                                    <td>{this.state.doctorName}</td>
-                                    <td><h4>Hospital ID</h4></td>
+                                    <td>Dr.{this.state.doctorName}</td>
+                                    <td><h4>Hospital Name</h4></td>
                                     <td>{this.state.doctorOrg}</td>
                                     <td><h4>Date</h4></td>
                                     <td>{this.state.date}</td>
@@ -179,6 +181,7 @@ class ComponentToPrint extends Component {
                                     <th><h4>Time</h4></th>
                                     <th><h4>Before/After Meal</h4></th>
                                     <th><h4>No of days</h4></th>
+                                    <th></th>
 
                                 </tr>
                             </thead>
@@ -198,6 +201,12 @@ class ComponentToPrint extends Component {
               })}</td>
               <td>{med.meal}</td>
               <td>{med.noofdays}</td>
+              <td>
+                <Link to="#">
+                <h4 className="ui ">Buy now</h4>
+                </Link>
+                
+                </td>
               
       
       

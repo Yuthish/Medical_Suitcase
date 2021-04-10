@@ -3,6 +3,14 @@ import './drinfo.css'
 import axios from 'axios'
 
 function Myinfo(props){
+  const get_age = (date) => {
+    var dob = new Date(date);
+    var month_diff = Date.now() - dob.getTime();
+    var age_dt = new Date(month_diff);
+    var year = age_dt.getUTCFullYear();
+    var age = Math.abs(year - 1970);
+    return age + 1
+  }
 
   var ID=props.match.params.id
 
@@ -14,6 +22,7 @@ function Myinfo(props){
   const [dob, setDob] = useState('');
   const [piclink, setPiclink] = useState('');
   const [gender, setGender] = useState('')
+  const [age, setAge] = useState(0)
   var drinfo = []
 
   useEffect(() => {
@@ -37,6 +46,7 @@ function Myinfo(props){
         setEmail(drinfo[0].email_addr)
         setPiclink(drinfo[0].details.profile_pic)
         setGender(drinfo[0].details.gender)
+        setAge(get_age(dob))
 
       })
       .catch(err => {
@@ -76,7 +86,7 @@ function Myinfo(props){
                     <td><h2> Gender</h2></td>
                     <td style={{ fontSize: '17px' }}>{gender}</td>
                     <td><h2> Age</h2></td>
-                    <td style={{ fontSize: '17px' }}>21</td>
+                    <td style={{ fontSize: '17px' }}>{age}</td>
                   </tr>
                 </tbody>
               </table>

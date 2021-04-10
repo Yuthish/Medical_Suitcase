@@ -115,8 +115,8 @@ class ComponentToPrint extends Component {
                   <td><h4>Doctor ID </h4></td>
                   <td>{this.state.doctorID}</td>
                   <td><h4>Doctor Name</h4></td>
-                  <td>{this.state.doctorName}</td>
-                  <td><h4>Hospital ID</h4></td>
+                  <td>Dr.{this.state.doctorName}</td>
+                  <td><h4>Hospital Name</h4></td>
                   <td>{this.state.doctorOrg}</td>
                   <td><h4>Date</h4></td>
                   <td>{this.state.date}</td>

@@ -8,7 +8,7 @@ const sidebardata=[
     
     {
         title:"My Info",
-        path:"/myinfo/"+id,
+        path:"/myinfo/"+2,
         cName:'nav-text'
     },
     {
