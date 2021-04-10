@@ -51,6 +51,11 @@ function Patientrecords(props) {
                         <div>
                             <h2>Details</h2>
                             <p>{x.report}</p>
+                            <button className="verify-button" type='button' onClick={(e) => {
+                                    
+                                    window.location = "/patientrecords/presverify/" + id + "/" + x._id;
+                                    e.preventDefault();
+                                }} className=' ui inverted primary button'>Verify</button>
                             <button type='button' onClick={(e) => {
                                 e.preventDefault();
                                 window.location = "/patientrecords/myprescription/" + id + "/" + x._id;
