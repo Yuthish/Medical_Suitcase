@@ -261,7 +261,7 @@ function NewPres(props) {
                                 <td><strong>Gender</strong></td>
                                 <td style={{ fontSize: '17px' }}>{gender}</td>
                                 <td><strong>Age</strong></td>
-                                <td style={{ fontSize: '17px' }}>14</td>
+                                <td style={{ fontSize: '17px' }}>{age}</td>
                             </tr>
                         </tbody>
 
