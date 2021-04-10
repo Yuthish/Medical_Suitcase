@@ -36,6 +36,104 @@ router.get("/searchuser",function(req,res){
 
 })
 
+router.get("/getuser",function(req,res){
+    var id=req.query.id;
+    User.findOne({ID:id}).populate("mymedicalrecords")
+        .then(user=>{
+            res.json(user)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+
+})
+
+
+router.get("/storemedicalrecords",function(req,res){
+    console.log(req)
+    var medicines=req.query.medicines;
+    var record=req.query.report;
+    var patientID=req.query.id;
+    var doctorID=req.query.idone;
+    console.log(doctorID)
+    var patientname=req.query.name
+    console.log(medicines)
+    console.log(record)
+    var medlist=[]
+    var doctorName=req.query.docName;
+    var doctorPlace=req.query.docPlace;
+
+
+    User.findOne({ID:doctorID})
+    .then(user=>{
+        console.log("Doctor",user)
+        // doctorPlace=user.details.doc.workplace_list[0];
+        // doctorName=user.details.name;
+        console.log("name",typeof(doctorName),"place",typeof(doctorPlace),typeof(doctorID))
+    })
+    
+    .catch(err=>{
+        console.log(err)
+    })
+    console.log("Doctor name",doctorName)
+    medicines.forEach(med=>{
+        medlist.push(JSON.parse(med))
+
+    })
+    medicalrecord.create({
+            doc: {
+                name: doctorName,
+                place: doctorPlace,
+                ID: doctorID
+            },
+            date: Date.now() + '',
+            report: record,
+            keywords: ["Headache", "body", "aches", "Fever", "dengue"],
+            medicine_list: medlist,
+        })
+        .then(med=>{
+            console.log("Doctor name",doctorName)
+            console.log("prescription",med)
+            User.findOne({ID:patientID})
+            .then(founduser=>{
+                console.log("FOUNDUSER",founduser)
+                founduser.mymedicalrecords.push(med)
+                founduser.save()
+
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        
+        
+        // function(err,med){
+        //     if(err){
+        //         console.log(err)
+        //     }
+        //     else{
+        //         console.log("med",med)
+        //         User.findOne({ID:patientID},function(err,founduser){
+        //             if(err){
+        //                 console.log(err)
+        //             }
+        //             else{
+        //                 console.log("FOUNDUSER",founduser)
+        //                 founduser.mymedicalrecords.push(med)
+        //                 founduser.save()
+        //             }
+        //         })
+        //     }
+        // }
+        
+  
+    
+})
+
 
 
 
