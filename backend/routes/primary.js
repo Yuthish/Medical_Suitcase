@@ -90,6 +90,10 @@ router.get("/storemedicalrecords",function(req,res){
     var medlist=[]
     var doctorName=req.query.docName;
     var doctorPlace=req.query.docPlace;
+    
+    var words;
+     words=req.query.keywords
+     console.log(words)
 
 
     User.findOne({ID:doctorID})
@@ -117,7 +121,7 @@ router.get("/storemedicalrecords",function(req,res){
             },
             date: convert_age(Date.now()),
             report: record,
-            keywords: ["Headache", "body", "aches", "Fever", "dengue"],
+            keywords: words,
             medicine_list: medlist,
         })
         .then(med=>{
