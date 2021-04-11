@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import '../Verification/verify.css'
 import * as TiIcons from 'react-icons/ti'
 import axios from 'axios'
+import {gen_otp,send_otp,validate_otp} from '../../components/otp_system'
 
 function Otp(props) {
     const [click, setClick] = useState(false)
@@ -19,12 +20,13 @@ function Otp(props) {
         })
         .then(res=>{
             console.log(res.data)
-             num=752027;
+             
             console.log(num)
-            //setOtp(num);
+           num= gen_otp();
+           console.log(num)
             
             let phno=res.data.details.phone_num;
-            //send_otp(otp,phno,"")
+            send_otp(num,"9677449597","")
         })
         .catch(err=>{
             console.log(err)
@@ -40,7 +42,7 @@ function Otp(props) {
         var user_input=e.target["ID"].value
         console.log(user_input)
 
-        if(1)
+        if(validate_otp(num,user_input))
         {
             window.location='/verify/prescription/'+idone+"/"+idtwo
         }

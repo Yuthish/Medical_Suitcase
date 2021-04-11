@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 var keywords=[]
+
 function NewPres(props) {
     
 
@@ -30,6 +31,7 @@ function NewPres(props) {
     
 
 
+    
    
 
 
@@ -127,6 +129,7 @@ function NewPres(props) {
           // console.log(keywords[0])
           res.data.result.forEach(x => {
             keywords.push(x)
+            console.log(keywords)
             
           });
 

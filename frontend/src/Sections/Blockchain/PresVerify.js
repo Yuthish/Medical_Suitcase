@@ -83,7 +83,13 @@ function PresVerify(props) {
           }
       })
       .then(res=>{
-          console.log("bewhbejh")
+          if(res.data){
+              alert("Your Record is unforged!!!")
+          }
+          else{
+              alert("Oops!!!Looks like ur data is forged")
+
+          }
       })
 
 
