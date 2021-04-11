@@ -26,7 +26,7 @@ nodemon start
 ---
 
 ## About :medical_symbol:
-Medical Suitcase is a service platform where all the Medical Records of  the citizens are stored in a secured environment.These medical records are made easily accessible at any time in pdf format (printable) for the user.The platform makes sure that only government certified doctors can prescribe medications to the patients.The platform also supports standard prescription template. It helps to maintain the uniformity of records throughout the country.
+Medical Suitcase is a government aided health care as a service platform where all the Medical Records of  the citizens are stored in a secured environment.These medical records are made easily accessible at any time in pdf format (printable) for the user.The platform makes sure that only government certified doctors can prescribe medications to the patients.The platform also supports standard prescription template. It helps to maintain the uniformity of records throughout the country.
 
 
 ---
