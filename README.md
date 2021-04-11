@@ -43,20 +43,21 @@ Medical Suitcase is a service platform where all the Medical Records of  the cit
 
 ## Screenshots :medical_symbol:
 <p align="center">
-<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/2.png" width="600" height="600" />
+<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/2.png" width="900" height="600" />
 </p>
 <p align="center">
-<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/3.png" width="600" height="600" />
+<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/3.png" width="800" height="600" />
 </p>
 <p align="center">
-<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/5.png" width="600" height="600" />
+<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/5.png" width="900" height="500" />
 </p>
 <p align="center">
-<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/1.png" width="600" height="600" />
+<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/1.png" width="500" height="600" />
 </p>
 <p align="center">
-<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/6.png" width="600" height="600" />
+<img src="https://github.com/Yuthish/Medical_Suitcase/blob/main/media/6.png" width="800" height="600" />
 </p>
+
 ---
 ## Tech stacks used :medical_symbol:
 - React.js
@@ -65,6 +66,7 @@ Medical Suitcase is a service platform where all the Medical Records of  the cit
 - Spacy
 - Google cloud platform
 - Fast2sms
+
 ---
 ## Contibutors :medical_symbol:
 
