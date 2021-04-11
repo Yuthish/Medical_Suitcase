@@ -40,7 +40,7 @@ function Verify(props) {
                 <form onSubmit={handleClick}>
                     <div className="ui left huge icon input">
 
-                        <input type="text" placeholder="Enter Patient ID" name="ID" />
+                        <input type="text" placeholder="Enter Patient ID" name="ID" autocomplete='off' />
                         <i className="users icon"></i>
 
                     </div>

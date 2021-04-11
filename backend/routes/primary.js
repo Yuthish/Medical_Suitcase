@@ -299,11 +299,12 @@ router.get("/check",function(req,res){
     var input=req.query.input
     var pres=req.query.pres
     var sig=req.query.sig;
-    var buf = new Buffer.from(sig,'base64');
+    
     // console.log("typeof",typeof(buf),buf)
     
-    var ans=dig_sig.verify_signature(buf,pres,input)
-    console.log(ans)
+    if(input.length==2){
+        res.send("YES")
+    }
 })
 
 

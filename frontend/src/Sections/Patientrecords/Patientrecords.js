@@ -51,7 +51,7 @@ function Patientrecords(props) {
                         <div>
                             <h2>Details</h2>
                             <p>{x.report}</p>
-                            <button className="verify-button" type='button' onClick={(e) => {
+                            <button className="verify-button" style={{position:'relative',left:'1250px'}} type='button' onClick={(e) => {
                                     
                                     window.location = "/patientrecords/presverify/" + id + "/" + x._id;
                                     e.preventDefault();
