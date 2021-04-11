@@ -14,6 +14,7 @@ const get_age = (date) => {
   var age = Math.abs(year - 1970);
   return age + 1
 }
+var link='https://med-sui-google-cs.herokuapp.com/search/?query='
 class ComponentToPrint extends Component {
  
 
@@ -201,6 +202,7 @@ class ComponentToPrint extends Component {
                             <tbody>
                 {this.state.medicines.map(x=>{
          return x.map(med=>{
+           med.link="https://med-sui-google-cs.herokuapp.com/search/?query="+med.drugname.toLowerCase()
          console.log(med)
          return (
             <tr key={med.id}>
@@ -214,10 +216,31 @@ class ComponentToPrint extends Component {
               })}</td>
               <td>{med.meal}</td>
               <td>{med.noofdays}</td>
-              <td style={{whiteSpace:'nowrap'}}>
-                <Link to="#">
-                <h4 className="ui" >Buy Now</h4>
-                </Link>
+              
+=======
+              <td>
+                
+                
+                <button onClick={()=>{
+                  axios.get(med.link)
+                  .then(res=>{
+                    console.log(res.data.result)
+                    window.location=res.data.result
+                  })
+                  // fetch(med.link, {
+                  //   method: 'GET',
+                  //   mode:'no-cors',
+                    
+                
+                        
+                  //   })
+                  //   .then(res=>{
+                  //     console.log(res)
+                  //   })
+                }} ><h4 className="ui ">Buy now</h4></button>
+                
+               
+
                 
                 </td>
               

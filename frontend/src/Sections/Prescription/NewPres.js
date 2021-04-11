@@ -4,7 +4,7 @@ import * as ImIcons from "react-icons/im";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
-
+var keywords=[]
 function NewPres(props) {
     
 
@@ -27,6 +27,7 @@ function NewPres(props) {
     const [gender, setGender]=useState('')
     var patientinfo = []
     var docinfo=[]
+    
 
 
    
@@ -39,12 +40,12 @@ function NewPres(props) {
           }
         })
         .then(res=>{
-          console.log("doc",res.data)
+        
           docinfo.push(res.data)
           setDocName(docinfo[0].details.name)
           console.log(docinfo[0].details.doc)
           setDocPlace(docinfo[0].details.doc.workplace_list)
-          console.log(docName,docPlace)
+          
         })
         
         axios.get('/getuser', {
@@ -53,12 +54,12 @@ function NewPres(props) {
           }
         })
           .then(res => {
-            console.log(res.data)
+            
             patientinfo.push(res.data)
             setName(patientinfo[0].details.name)
             setId(patientinfo[0].ID)
             setDob(patientinfo[0].details.dob)
-            console.log(dob)
+            
             setBloodgroup(patientinfo[0].details.blood_group)
             setPiclink(patientinfo[0].details.profile_pic)
             setGender(patientinfo[0].details.gender)
@@ -71,7 +72,7 @@ function NewPres(props) {
               return age + 1
             }
             let k=get_age(dob);
-            console.log(k)
+            
             setAge(k)
             
     
@@ -84,16 +85,16 @@ function NewPres(props) {
     
     
     
-      })
+      },[])
 
       const handleClickOne = (e) => {
         // setTimeoftheday(prevObj=>[...prevObj,{selection}])
         // console.log(timeoftheday)
         let a = []
         a.push(selection)
-        console.log(e.target["Timing"])
+        
         setMedicines(prevmedicines => [...prevmedicines, { id: prevmedicines.length + 1, drugname: e.target['drugs'].value, time: selection, meal: e.target['Time'].value, noofdays: e.target['Days'].value }])
-        console.log(medicines)
+        
     
         e.preventDefault();
     
@@ -103,6 +104,9 @@ function NewPres(props) {
       }
 
       const handleClickTwo = (e) => {
+        var link=`https://145d95fef381.ngrok.io`+`/api/?report=`+`${report}`
+        link=encodeURI(link)
+        
 
         // console.log(e.target)
         // var str=[]
@@ -112,6 +116,26 @@ function NewPres(props) {
         // console.log(report)
         setToggle(false)
         e.preventDefault();
+      
+
+      axios.get(link)
+      .then(res=>{
+       
+        
+         
+          // keywords.push(res.data.result)
+          // console.log(keywords[0])
+          res.data.result.forEach(x => {
+            keywords.push(x)
+            
+          });
+
+        
+       
+      })
+      .catch(err=>{
+        console.log(err)
+      })
     
     
     
@@ -119,7 +143,13 @@ function NewPres(props) {
       }
 
       const handleReport = (e) => {
+        
         setReport(e.target.value)
+        
+       
+        
+
+
     
       }
 
@@ -148,6 +178,7 @@ function NewPres(props) {
       }
 
       const handleDelete = (x) => {
+        console.log(keywords)
         console.log(x)
         medicines.forEach(med => {
           if (med.id == x) {
@@ -162,6 +193,7 @@ function NewPres(props) {
 
       const handlePrescription = () => {
         console.log(medicines)
+        console.log(keywords)
           axios.get("/storemedicalrecords",{
             params:{
               medicines:medicines,
@@ -170,7 +202,8 @@ function NewPres(props) {
               idone:idone,
               name:name,
               docName:docName,
-              docPlace:docPlace
+              docPlace:docPlace,
+              words:keywords
             }
           })
             

@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 import os
+from flask_cors import CORS, cross_origin
 # from dotenv import load_dotenv
 import spacy
 # load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'abcd1234'
-
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 @app.route('/api/', methods = ['GET', 'POST'])
 def home():
     nlp = spacy.load("en_core_web_md")
