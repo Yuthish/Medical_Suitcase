@@ -217,11 +217,11 @@ class ComponentToPrint extends Component {
               <td>{med.meal}</td>
               <td>{med.noofdays}</td>
               
-=======
+
               <td>
                 
                 
-                <button onClick={()=>{
+                <button className='ui inverted primary button' onClick={()=>{
                   axios.get(med.link)
                   .then(res=>{
                     console.log(res.data.result)
@@ -237,7 +237,7 @@ class ComponentToPrint extends Component {
                   //   .then(res=>{
                   //     console.log(res)
                   //   })
-                }} ><h4 className="ui ">Buy now</h4></button>
+                }} ><h4 className="ui " style={{whiteSpace:'nowrap'}}>Buy Now</h4></button>
                 
                
 
