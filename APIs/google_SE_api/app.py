@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 from searcher import search
 load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'abcd1234'
-
+cors = CORS(app, resources={r"/search/*": {"origins": "*"}})
 @app.route('/search/', methods = ['GET'])
 def home():
     result = ""
