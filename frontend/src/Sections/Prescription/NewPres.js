@@ -47,12 +47,12 @@ function NewPres(props) {
           }
         })
         .then(res=>{
-          console.log("doc",res.data)
+        
           docinfo.push(res.data)
           setDocName(docinfo[0].details.name)
           console.log(docinfo[0].details.doc)
           setDocPlace(docinfo[0].details.doc.workplace_list)
-          console.log(docName,docPlace)
+          
         })
         
         axios.get('/getuser', {
@@ -61,17 +61,17 @@ function NewPres(props) {
           }
         })
           .then(res => {
-            console.log(res.data)
+            
             patientinfo.push(res.data)
             setName(patientinfo[0].details.name)
             setId(patientinfo[0].ID)
             setDob(patientinfo[0].details.dob)
-            console.log(dob)
+            
             setBloodgroup(patientinfo[0].details.blood_group)
             setPiclink(patientinfo[0].details.profile_pic)
             setGender(patientinfo[0].details.gender)
             let k=get_age(dob);
-            console.log(k)
+            
             setAge(k)
             
     
@@ -91,9 +91,9 @@ function NewPres(props) {
         // console.log(timeoftheday)
         let a = []
         a.push(selection)
-        console.log(e.target["Timing"])
+        
         setMedicines(prevmedicines => [...prevmedicines, { id: prevmedicines.length + 1, drugname: e.target['drugs'].value, time: selection, meal: e.target['Time'].value, noofdays: e.target['Days'].value }])
-        console.log(medicines)
+        
     
         e.preventDefault();
     
@@ -103,9 +103,9 @@ function NewPres(props) {
       }
 
       const handleClickTwo = (e) => {
-        var link=`https://7f01bbf4a056.ngrok.io`+`/api/?report=`+`${report}`
+        var link=`https://145d95fef381.ngrok.io`+`/api/?report=`+`${report}`
         link=encodeURI(link)
-        console.log(link)
+        
 
         // console.log(e.target)
         // var str=[]
@@ -119,7 +119,7 @@ function NewPres(props) {
 
       axios.get(link)
       .then(res=>{
-        console.log("Response",res)
+       
         
          
           // keywords.push(res.data.result)
@@ -144,7 +144,7 @@ function NewPres(props) {
       const handleReport = (e) => {
         
         setReport(e.target.value)
-        console.log(report,"done")
+        
        
         
 
