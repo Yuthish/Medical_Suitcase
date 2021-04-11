@@ -5,14 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 var keywords=[]
-const get_age = (date) => {
-  var dob = new Date(date);
-  var month_diff = Date.now() - dob.getTime();
-  var age_dt = new Date(month_diff);
-  var year = age_dt.getUTCFullYear();
-  var age = Math.abs(year - 1970);
-  return age + 1
-}
+
 function NewPres(props) {
     
 
@@ -39,6 +32,7 @@ function NewPres(props) {
 
 
     
+   
 
 
       useEffect(() => {
@@ -71,6 +65,14 @@ function NewPres(props) {
             setBloodgroup(patientinfo[0].details.blood_group)
             setPiclink(patientinfo[0].details.profile_pic)
             setGender(patientinfo[0].details.gender)
+            const get_age = (date) => {
+              var dob = new Date(date);
+              var month_diff = Date.now() - dob.getTime();
+              var age_dt = new Date(month_diff);
+              var year = age_dt.getUTCFullYear();
+              var age = Math.abs(year - 1970);
+              return age + 1
+            }
             let k=get_age(dob);
             
             setAge(k)
@@ -388,6 +390,12 @@ function NewPres(props) {
                                 <option value="Xanax">Xanax</option>
                                 <option value="Aspirin">Aspirin</option>
                                 <option value="Dolo 650">Dolo 650</option>
+                                <option value="Volini">Volini</option>
+                                <option value="Azithromycin">Azithromycin</option>
+                                <option value="Covaxin">Covaxin</option>
+                                <option value="Pulmoclear">Pulmoclear</option>
+                                <option value="Targit 20mg">Targit 20mg</option>
+                                
                             </select>
                             <br></br>
 

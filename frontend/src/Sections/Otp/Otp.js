@@ -60,7 +60,7 @@ function Otp(props) {
             
             <div class="ui left huge icon input">
                
-              <input type="Number" placeholder="Enter OTP " name="ID" min='0' />
+              <input type="Number" placeholder="Enter OTP " name="ID" min='0' autocomplete='off'  />
               
               
             </div>

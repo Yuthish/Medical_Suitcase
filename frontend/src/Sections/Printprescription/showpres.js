@@ -216,6 +216,8 @@ class ComponentToPrint extends Component {
               })}</td>
               <td>{med.meal}</td>
               <td>{med.noofdays}</td>
+              
+=======
               <td>
                 
                 
@@ -238,6 +240,7 @@ class ComponentToPrint extends Component {
                 }} ><h4 className="ui ">Buy now</h4></button>
                 
                
+
                 
                 </td>
               

@@ -117,7 +117,7 @@ function PresVerify(props) {
 
   }
   return (
-    <div className="prescription-form" style={{paddingBottom:'15.2%'}}>
+    <div className="prescription-form" style={{paddingBottom:'25.7%'}}>
     <div className="login-box ui item inverted segment box" style={{top:'25px'}}>
       <div className="ui header">
         <h1>Verify Your Prescription</h1>
@@ -125,7 +125,7 @@ function PresVerify(props) {
      
       <form className="ui form" style={{paddingBottom:'20px'}} onSubmit={handleSubmit}>
         <div className="field">
-          <label style={{fontSize:'15px'}}>Doctor Public Key</label>
+          <label style={{fontSize:'15px',color:'white'}}>Doctor Public Key</label>
           <input type="text" name="pub" placeholder="Enter Doctor Public Key " />
         </div>
         
