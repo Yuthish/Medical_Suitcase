@@ -386,6 +386,12 @@ function NewPres(props) {
                                 <option value="Xanax">Xanax</option>
                                 <option value="Aspirin">Aspirin</option>
                                 <option value="Dolo 650">Dolo 650</option>
+                                <option value="Volini">Volini</option>
+                                <option value="Azithromycin">Azithromycin</option>
+                                <option value="Covaxin">Covaxin</option>
+                                <option value="Pulmoclear">Pulmoclear</option>
+                                <option value="Targit 20mg">Targit 20mg</option>
+                                
                             </select>
                             <br></br>
 
