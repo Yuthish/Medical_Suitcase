@@ -28,6 +28,7 @@ function NewPres(props) {
     const [gender, setGender]=useState('')
     var patientinfo = []
     var docinfo=[]
+    var ailments=[["Heart Attack","Sugar","Cancer","Sinus"],["Dust","BP","Blind"],["Heart Attack","Sugar","Cancer","Sinus"],["Dust","BP","Blind"],["Dust","BP","Blind"]]
     
 
 
@@ -263,6 +264,14 @@ function NewPres(props) {
             //  console.log("Printed",med.id,med.meal,med.noofdays)
               })
 
+    var ailmentlist=ailments[idtwo].map(x=>{
+      return(
+        
+          <li>{x}</li>
+          
+      )
+    })
+
 
 
 
@@ -353,14 +362,39 @@ function NewPres(props) {
                                 <label><h3>Report</h3></label>
 
                                 <textarea onChange={handleReport} className='drug-drop' style={{ marginTop: '7px' }} rows='5' placeholder="Type here- Patients Symtoms, diagonistic details.etc" name="Report" ></textarea>
+
                                 <br></br>
                                 <br></br>
                                 <button onClick={handleClickTwo}  className="ui inverted primary button">Submit</button>
 
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <h3> Patient Medical Condition(history):
+                                {ailmentlist}
+                                </h3>
+
                             </form>
                             :
+                            <div>
 
                             <div>{report}</div>
+
+                            <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <h3> Patient Medical Condition(history):
+                                {ailmentlist}
+                                </h3>
+                                </div>
+
+
 
 
                         }

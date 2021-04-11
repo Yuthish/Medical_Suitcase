@@ -61,6 +61,7 @@ function Otp(props) {
             <div class="ui left huge icon input">
                
               <input type="Number" placeholder="Enter OTP " name="ID" min='0' autocomplete='off'  />
+              <h3 style={{color:"white",position:"relative",top:"50px",right:"305px"}}>Otp is sent to Patient's registered Mobile Number</h3>
               
               
             </div>
