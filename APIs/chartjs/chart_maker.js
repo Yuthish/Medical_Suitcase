@@ -1,58 +1,94 @@
+
+const random_num=(k) => {
+  let arr = [];
+  for(let i=1; i<=k; i++){
+    arr.push(Math.floor(1000 + Math.random() * 9000))
+  }
+  return arr
+}
+const random_mon=(k) => {
+  let arr = [];
+  let mon = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  for(let i=1; i<=k; i++){
+    arr.push(mon[Math.floor(Math.random() * (11 - 0) + 0)])
+  }
+  return arr
+}
+
+const random_N=()=>{
+  return Math.floor(Math.random() * (11- 3) + 3)
+}
+
+const random_dis = (k) => {
+  let arr = [];
+  let dis = ['Dengue', 'Typhoid', 'Hepatitis', 'Jaundice', 'Covid-19', 'Diarrhoeal Diseases', 'Cholera', 'Cancer', 'Flu', 'Tuberculosis']
+  for(let i=1; i<=k; i++){
+    arr.push(dis[Math.floor(Math.random() * (9 - 0) + 0)])
+  }
+  return arr
+  console.log(arr);
+}
+
+const random_N_mon=()=>{
+  return Math.floor(Math.random() * (11- 3) + 3)
+}
+const random_N_dis=()=>{
+  return Math.floor(Math.random() * (9- 3) + 3)
+}
+const random_N_dis_bar=()=>{
+  return Math.floor(Math.random() * (9- 5) + 5)
+}
+const random_color =(k)=>{
+  let arr = [];
+  let col = [
+    'rgba(255, 99, 132, 1)',
+    'rgba(255, 159, 64, 1)',
+    'rgba(255, 205, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(201, 203, 227, 1)',
+    'rgba(201, 225, 207, 1)',
+    'rgba(251, 203, 100, 1)',
+    'rgba(80, 223, 207, 1)'
+  ]
+  for(let i=1; i<=k; i++){
+    arr.push(col[Math.floor(Math.random() * (9 - 0) + 0)])
+  }
+  return arr
+}
+
 var ctx = document.getElementById('Chart1').getContext('2d');
+let r = random_N();
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  labels: random_mon(r),
   datasets: [{
       label: 'Mumbai',
-      data: [
-        2953, 3130, 7360,
-        2769, 6933, 7747,
-        9265, 8725, 8539,
-        7770, 5769, 9537
-      ],
+      data: random_num(r),
       fill: false,
       borderColor: 'rgb(255, 99, 132)',
     },
     {
       label: 'Hyderabad',
-      data: [
-        6086, 4157, 7215,
-        9481, 7653, 3932,
-        3130, 5986, 3494,
-        2919, 8103, 6523
-      ],
+      data: random_num(r),
       fill: false,
       borderColor: 'rgb(255, 205, 86)',
     },
     {
       label: 'Bangalore',
-      data: [
-        6055, 6745, 6205,
-        5803, 3687, 6474,
-        5277, 7544, 3134,
-        3800, 4657, 9039
-      ],
+      data: random_num(r),
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
     },
     {
       label: 'Chennai',
-      data: [
-        5196, 7665, 5598,
-        6925, 5191, 6577,
-        7600, 9070, 8052,
-        4273, 8208, 7361
-      ],
+      data: random_num(r),
       fill: false,
       borderColor: 'rgb(54, 162, 235)',
     },
     {
       label: 'Delhi',
-      data: [
-        5338, 5848, 4845,
-        7273, 5237, 6924,
-        4151, 6942, 6900,
-        5654, 3515, 6014
-      ],
+      data: random_num(r),
       fill: false,
       borderColor: 'rgb(153, 102, 255)',
     }
@@ -94,7 +130,7 @@ const config = {
     scales: {
       y: {
         min: 0,
-        max: 10000,
+        max: 15000,
         title: {
           display: true,
           text: "Cases Count",
@@ -121,28 +157,12 @@ var myChart1 = new Chart(ctx, config);
 // =====================================================================================================================================================
 
 var ctx1 = document.getElementById('Chart2').getContext('2d');
-
+let a = random_N_dis()
 const data1 = {
-  labels: [
-    'Dengue',
-    'Typhoid',
-    'Hepatitis',
-    'Jaundice',
-    'Covid-19',
-    'Diarrhoeal Diseases',
-    'Cholera',
-    'Cancer',
-    'Flu',
-    'Tuberculosis'
-  ],
+  labels: random_dis(a),
   datasets: [{
       label: 'Chennai',
-      data: [
-        5196, 4493, 4476,
-        6328, 2715, 3151,
-        8278, 4785, 5745,
-        5815
-      ],
+      data: random_num(a),
       fill: true,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgb(255, 99, 132)',
@@ -152,12 +172,7 @@ const data1 = {
       pointHoverBorderColor: 'rgb(255, 99, 132)'
     }, {
       label: 'Hyderabad',
-      data: [
-        6086, 6537, 5597,
-        4951, 7806, 4828,
-        7408, 6646, 4893,
-        5777
-      ],
+      data: random_num(a),
       fill: true,
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
       borderColor: 'rgb(54, 162, 235)',
@@ -168,12 +183,7 @@ const data1 = {
     },
     {
       label: 'Bangalore',
-      data: [
-        6055, 4069, 6978,
-        3769, 6248, 5593,
-        8392, 6136, 7472,
-        5389
-      ],
+      data: random_num(a),
       fill: true,
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       borderColor: 'rgb(75, 192, 192)',
@@ -239,31 +249,18 @@ function colorize(opaque) {
     return opaque ? c : c + "77";
   };
 }
-
+let b = random_N_dis_bar()
 var ctx2 = document.getElementById('Chart3').getContext('2d');
-const labels = ['Dengue', 'Typhoid', 'Hepatitis',
-  'Jaundice', 'Covid-19', 'Diarrhoeal Diseases',
-  'Cholera', 'Cancer', 'Flu', 'Tuberculosis'
-]
+const labels = random_dis(b)
 const data3 = {
   labels: labels,
   datasets: [{
       label: 'August',
-      data: [
-        8725, 7988, 9726,
-        5935, 6765, 6519,
-        8260, 8450, 5673,
-        4059
-      ]
+      data: random_num(b)
     },
     {
       label: 'October',
-      data: [
-        7770, 4763, 3194,
-        4640, 7854, 7827,
-        4623, 5171, 2528,
-        6352
-      ]
+      data: random_num(b)
     }
   ]
 };
@@ -325,31 +322,13 @@ var myChart3 = new Chart(ctx2, config2);
 // ===============================================================================================================================================================
 
 var ctx3 = document.getElementById('Chart4').getContext('2d');
+let c = random_N_dis_bar()
 const data4 = {
-  labels: ['Dengue', 'Typhoid', 'Hepatitis',
-  'Jaundice', 'Covid-19', 'Diarrhoeal Diseases',
-  'Cholera', 'Cancer', 'Flu', 'Tuberculosis'
-],
+  labels: random_dis(c),
   datasets: [{
     label: 'Cases count',
-    data: [
-      2298, 4504, 1240,
-      1786, 3612, 2620,
-      2671, 3711, 1534,
-      2790
-    ],
-    backgroundColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(255, 159, 64, 1)',
-      'rgba(255, 205, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(201, 203, 227, 1)',
-      'rgba(201, 225, 207, 1)',
-      'rgba(251, 203, 100, 1)',
-      'rgba(80, 223, 207, 1)'
-    ],
+    data: random_num(c),
+    backgroundColor: random_color(c),
     hoverOffset: 26
   }]
 };
@@ -378,31 +357,13 @@ var myChart4 = new Chart(ctx3, config3);
 // =========================================================================================================================================================================
 
 var ctx4 = document.getElementById('Chart5').getContext('2d');
+let d = random_N_dis_bar();
 const data5 = {
-  labels: ['Dengue', 'Typhoid', 'Hepatitis',
-  'Jaundice', 'Covid-19', 'Diarrhoeal Diseases',
-  'Cholera', 'Cancer', 'Flu', 'Tuberculosis'
-],
+  labels: random_dis(d),
   datasets: [{
     label: 'Cases count',
-    data: [
-      1634, 3985, 4941,
-      3639, 1734, 1893,
-      1582, 4796, 3615,
-      1329
-    ],
-    backgroundColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(255, 159, 64, 1)',
-      'rgba(255, 205, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(201, 203, 227, 1)',
-      'rgba(201, 225, 207, 1)',
-      'rgba(251, 203, 100, 1)',
-      'rgba(80, 223, 207, 1)'
-    ],
+    data: random_num(d),
+    backgroundColor: random_color(d),
     hoverOffset: 26
   }]
 };
