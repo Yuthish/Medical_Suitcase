@@ -13,7 +13,9 @@ import Printrecord from './Sections/Printrecord/Printrecord';
 import Patientrecords from './Sections/Patientrecords/Patientrecords';
 import Transactions from './Sections/Blockchain/Transactions';
 import Homepage from './Sections/Homepage/Homepage';
-import PresVerify from './Sections/Blockchain/PresVerify'
+import PresVerify from './Sections/Blockchain/PresVerify';
+import DrLogin from './Sections/DrLogin/DrLogin';
+import PatientLogin from './Sections/PatientLogin/PatientLogin';
 
 function App() {
   return (<div className='App'>
@@ -32,6 +34,8 @@ function App() {
         <Route  exact path="/transactions" component={Transactions} />
         <Route exact path="/" component={Homepage} />
         <Route  exact path="/patientrecords/presverify/:idone/:idtwo" render={(props)=><PresVerify {...props}/>} />
+        <Route  exact path="/drlogin" component={DrLogin} />
+        <Route  exact path="/patientlogin" component={PatientLogin} />
         
       </Switch>
     </Router>

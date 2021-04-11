@@ -16,6 +16,11 @@ function Homepage() {
         <div>
             <section id='home'>
                 <div className="homenav ui borderless fixed inverted menu" style={{ backgroundColor: 'black', fontFamily: 'megrim,cursive', textAlign: 'center' }}>
+                    <button style={{ fontFamily: 'megrim,cursive', marginLeft: '1%' }} type='button' onClick={(e) => {
+
+                        window.location = "http://127.0.0.1:5500/APIs/chartjs/index.html";
+                        e.preventDefault();
+                    }} className=' ui inverted primary button'>Analytics</button>
                     <a className="homenav-item item" href='#home'>
                         Home
                     </a>
@@ -28,8 +33,18 @@ function Homepage() {
                     <a className="item" href='#features'>
                         Features
                     </a>
-                    <button style={{ fontFamily: 'megrim,cursive' }} className='homenav-login  ui inverted primary button'>Analytics</button>
-                    <button style={{ fontFamily: 'megrim,cursive' }} className='homenav-signup ui inverted primary button'>Login</button>
+
+
+                    <button style={{ fontFamily: 'megrim,cursive' }} type='button' onClick={(e) => {
+
+                        window.location = "/drlogin";
+                        e.preventDefault();
+                    }} className='homenav-signup ui inverted primary button'>Dr.Login</button>
+                    <button style={{ fontFamily: 'megrim,cursive' }} type='button' onClick={(e) => {
+
+                        window.location = "/patientlogin";
+                        e.preventDefault();
+                    }} className=' ui inverted primary button'>Patient Login</button>
                 </div>
 
 
@@ -95,12 +110,12 @@ function Homepage() {
                         <div class="ui card whycard">
                             <div class="image">
                                 <img src={allinone} style={{ position: 'relative', right: '180px', bottom: '68px', width: '99%' }} />
-                                
+
                             </div>
                             <div class="content" >
                                 <h1 className='header' style={{ fontSize: '45px' }}>All in One Place</h1>
 
-                                <div class="description " style={{ color: 'white',fontSize:'20px' }}>
+                                <div class="description " style={{ color: 'white', fontSize: '20px' }}>
                                     <p>All the medical records of a citizen are stored in one place and can be accesed at any point of time.Everyone will have same template of Prescription.This ensure uniformity of Medical Records for all citizens of the country. No more preserving of prescriptions and saves paper.</p>
                                 </div>
                             </div>
@@ -110,14 +125,14 @@ function Homepage() {
                     <div class="column" >
 
 
-                        <div class="ui card whycard" style={{position: 'relative', left: '200px' }}>
+                        <div class="ui card whycard" style={{ position: 'relative', left: '200px' }}>
                             <div class="image">
                                 <img src={health} style={{ position: 'relative', right: '180px', bottom: '68px', width: '99%' }} />
                             </div>
                             <div class="content" >
                                 <h1 className='header' style={{ fontSize: '40px' }}>Healthcare Sector Improvement</h1>
 
-                                <div class="description " style={{ color: 'white',fontSize:'20px'}}>
+                                <div class="description " style={{ color: 'white', fontSize: '20px' }}>
                                     <p>Government can collect these data and use this for development of health sector.Health care services like Hospitals,Vaccination Camps can be developed properly at a particular region.Distributing the funds allocated for health sector happens very easily.Regionwise disease tracking can be done in a robust manner.</p>
                                 </div>
                             </div>
@@ -129,16 +144,16 @@ function Homepage() {
                 <div class="home-content ui one column doubling stackable grid container">
 
 
-                    <div class="column" style={{ paddingLeft: '35%',paddingTop:'10%' }} >
-                        
-                        <div class="ui card whycard1 " style={{width: '50%',}}>
+                    <div class="column" style={{ paddingLeft: '35%', paddingTop: '10%' }} >
+
+                        <div class="ui card whycard1 " style={{ width: '50%', }}>
                             <div class="image">
                                 <img src={doctor} style={{ position: 'relative', right: '180px', bottom: '68px', width: '99%' }} />
                             </div>
                             <div class="content" >
                                 <h1 className='header' style={{ fontSize: '40px' }}>Authorised Doctors</h1>
 
-                                <div class="description " style={{ color: 'white',fontSize:'20px'}}>
+                                <div class="description " style={{ color: 'white', fontSize: '20px' }}>
                                     <p>Government authorised Doctors and Hospitals only can prescribe medication in this platform.By this way we are able to prevent Unauthorised Doctors prescribing or practising medicine.</p>
                                 </div>
                             </div>

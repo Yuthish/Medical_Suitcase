@@ -214,9 +214,9 @@ class ComponentToPrint extends Component {
               })}</td>
               <td>{med.meal}</td>
               <td>{med.noofdays}</td>
-              <td>
+              <td style={{whiteSpace:'nowrap'}}>
                 <Link to="#">
-                <h4 className="ui ">Buy now</h4>
+                <h4 className="ui" >Buy Now</h4>
                 </Link>
                 
                 </td>
