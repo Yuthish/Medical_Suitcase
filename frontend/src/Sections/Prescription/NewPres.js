@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 var keywords=[]
+const get_age = (date) => {
+  var dob = new Date(date);
+  var month_diff = Date.now() - dob.getTime();
+  var age_dt = new Date(month_diff);
+  var year = age_dt.getUTCFullYear();
+  var age = Math.abs(year - 1970);
+  return age + 1
+}
 function NewPres(props) {
     
 
@@ -30,14 +38,7 @@ function NewPres(props) {
     
 
 
-    const get_age = (date) => {
-        var dob = new Date(date);
-        var month_diff = Date.now() - dob.getTime();
-        var age_dt = new Date(month_diff);
-        var year = age_dt.getUTCFullYear();
-        var age = Math.abs(year - 1970);
-        return age + 1
-      }
+    
 
 
       useEffect(() => {
@@ -126,6 +127,7 @@ function NewPres(props) {
           // console.log(keywords[0])
           res.data.result.forEach(x => {
             keywords.push(x)
+            console.log(keywords)
             
           });
 
