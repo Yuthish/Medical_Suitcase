@@ -30,14 +30,7 @@ function NewPres(props) {
     
 
 
-    const get_age = (date) => {
-        var dob = new Date(date);
-        var month_diff = Date.now() - dob.getTime();
-        var age_dt = new Date(month_diff);
-        var year = age_dt.getUTCFullYear();
-        var age = Math.abs(year - 1970);
-        return age + 1
-      }
+   
 
 
       useEffect(() => {
@@ -70,6 +63,14 @@ function NewPres(props) {
             setBloodgroup(patientinfo[0].details.blood_group)
             setPiclink(patientinfo[0].details.profile_pic)
             setGender(patientinfo[0].details.gender)
+            const get_age = (date) => {
+              var dob = new Date(date);
+              var month_diff = Date.now() - dob.getTime();
+              var age_dt = new Date(month_diff);
+              var year = age_dt.getUTCFullYear();
+              var age = Math.abs(year - 1970);
+              return age + 1
+            }
             let k=get_age(dob);
             
             setAge(k)
